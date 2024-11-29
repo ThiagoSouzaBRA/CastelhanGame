@@ -8,6 +8,10 @@ class Camera {
      * @param {int} heightScreen 
      */
     constructor(widthScreen, heightScreen) {
+
+        this.widthScreen = widthScreen;
+        this.heightScreen = heightScreen;
+
         return new THREE.PerspectiveCamera(
             75,
             widthScreen / heightScreen,
@@ -16,7 +20,8 @@ class Camera {
         );
     }
 
-  
 }
+
+
 
 export { Camera }
