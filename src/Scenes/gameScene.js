@@ -12,12 +12,14 @@ class GameScene {
         //Scene
         this.scene = new THREE.Scene();
 
+
         //Camera
         this.camera = new Camera(this.width, this.height);
         this.camera.position.set(0, 5, 10)
         this.camera.lookAt(0, 0, 0);
         this.camera.fov = 35
         this.camera.updateProjectionMatrix();
+
 
         //Render
         this.renderer = new THREE.WebGLRenderer();
@@ -28,16 +30,16 @@ class GameScene {
         //Definição de Mouse
         this.mouse = new THREE.Vector2()
 
+
         //Raycaster
         this.raycaster = new THREE.Raycaster();
+
 
         //Events
         this.onMouseMove = this.onMouseMove.bind(this)
         window.addEventListener('mousemove', event => this.onMouseMove(event), false);
-
         this.onMouseClick = this.onMouseClick.bind(this)
         window.addEventListener('click', this.onMouseClick, false);
-
         window.addEventListener('resize', () => {
             this.camera.aspect = window.innerWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
@@ -50,15 +52,12 @@ class GameScene {
     setup() {
         this.directionalLight = new DirectionalLight();
         this.scene.add(this.directionalLight)
-
         this.v = new GameObject(1, 0, 0, 0)
         this.scene.add(this.v.getMesh())
-
     }
 
     update() {
-
-        this.v.addRotation(.001,.001,0)
+        this.v.addRotation(.001, .001, 0)
     }
 
     render() {
@@ -66,41 +65,31 @@ class GameScene {
     }
 
     onMouseMove(event) {
-        // Normalizar as coordenadas do mouse
         this.mouse.x = (event.clientX / this.width) * 2 - 1;
         this.mouse.y = -(event.clientY / this.height) * 2 + 1;
-        // console.log(this.mouse)
     }
 
 
     onMouseClick() {
         // Atualizar o Raycaster com a posição do mouse e a câmera
         this.raycaster.setFromCamera(this.mouse, this.camera);
-    
+
         // Verificar interseções
         const intersects = this.raycaster.intersectObjects(this.scene.children);
-    
+
         if (intersects.length > 0) {
             const intersect = intersects[0];
             const clickedMesh = intersect.object;
             const faceIndex = intersect.face.materialIndex;
-    
-            console.log(`Clicked Mesh: ${clickedMesh.name}`);
-            console.log(`Clicked face material index: ${faceIndex}`);
-    
-            // Garantir que o Mesh tem múltiplos materiais
-            if (Array.isArray(clickedMesh.material)) {
-                const newMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
-    
+            
+            if (clickedMesh.material.length >= 6) {
                 // Substituir o material no índice da face
-                clickedMesh.material[faceIndex] = newMaterial;
-                clickedMesh.material.needsUpdate = true; // Forçar atualização do material
-            } else {
-                console.error("O Mesh não possui múltiplos materiais!");
+                clickedMesh.material[faceIndex] = new THREE.MeshBasicMaterial({ color: Colors.LIGHT_YELLOW });
+                clickedMesh.material.needsUpdate = true;
             }
         }
     }
-    
+
 }
 
 export { GameScene }

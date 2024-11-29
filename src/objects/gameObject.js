@@ -24,6 +24,8 @@ class GameObject {
         this.mesh.rotation.set(0,0,0)
         this.mesh.scale.copy(this.scale);
 
+        //Funções personalizadas no mesh
+        // this.mesh.a = ()=>{}
 
         //Definindo Sombra
         this.mesh.castShadow = true;
