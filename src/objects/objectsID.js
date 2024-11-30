@@ -12,15 +12,28 @@ const objectsID = {
         name: "Grama",
         geometry: new THREE.BoxGeometry(1, 1, 1),
         material: [
-            new THREE.MeshStandardMaterial({ color: 0xff0000 }), // Vermelho
-            new THREE.MeshStandardMaterial({ color: 0x00ff00 }), // Verde
-            new THREE.MeshStandardMaterial({ color: 0x0000ff }), // Azul
-            new THREE.MeshStandardMaterial({ color: 0xffff00 }), // Amarelo
-            new THREE.MeshStandardMaterial({ color: 0xff00ff }), // Magenta
-            new THREE.MeshStandardMaterial({ color: 0x00ffff }), // Ciano
+            new THREE.MeshStandardMaterial({ color: Colors.GREEN }), // Vermelho
+            new THREE.MeshStandardMaterial({ color: Colors.GREEN }), // Verde
+            new THREE.MeshStandardMaterial({ color: Colors.GREEN }), // Azul
+            new THREE.MeshStandardMaterial({ color: Colors.GREEN }), // Amarelo
+            new THREE.MeshStandardMaterial({ color: Colors.GREEN }), // Magenta
+            new THREE.MeshStandardMaterial({ color: Colors.GREEN }), // Ciano
         ],
         scale: new THREE.Vector3(1, 1, 1),
     },
+    // 2: {
+    //     name: "Transparente",
+    //     geometry: new THREE.BoxGeometry(1, 1, 1),
+    //     material: [
+    //         new THREE.MeshStandardMaterial({ color: Colors.WHITE }), // Vermelho
+    //         new THREE.MeshStandardMaterial({ color: Colors.WHITE }), // Verde
+    //         new THREE.MeshStandardMaterial({ color: Colors.WHITE }), // Azul
+    //         new THREE.MeshStandardMaterial({ color: Colors.WHITE }), // Amarelo
+    //         new THREE.MeshStandardMaterial({ color: Colors.WHITE }), // Magenta
+    //         new THREE.MeshStandardMaterial({ color: Colors.WHITE }), // Ciano
+    //     ],
+    //     scale: new THREE.Vector3(1, 1, 1),
+    // },
 };
 
 export const getObjectConfig = (id) => {
